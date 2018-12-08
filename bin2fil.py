@@ -11,7 +11,7 @@ import scipy.signal as sig
 # -------------- GLOBAL DEFAULTS VATIABLES ---------------
 conv_start = 0
 conv_len = 7200
-ampli = 3.0
+ampli = 1.0
 sample_rate = 1000
 f_h = 0.1
 f_l = 60.0
@@ -286,7 +286,7 @@ def elaborate(chunksize, debug=True):
         #
         # No reason not to scale them into a {0...1.0} range
         #
-        d = np.divide(d,32767.0)
+        d = np.divide(d,(32767.0/ampli))
 
         print('processing chunk\t{}/{}\t({:3}%)'
                 .format(chunk, chunk_total, int(((chunk+1) / (chunk_total+1) )*100)), end="\r")
